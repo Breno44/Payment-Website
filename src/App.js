@@ -1,4 +1,6 @@
 import React from "react";
+import Chip from "./assets/images/chip.png";
+import Visa from "./assets/images/visa.png";
 import {
   Container,
   Form,
@@ -7,27 +9,73 @@ import {
   CardHolderInput,
   Span,
   FlexBox,
+  InputBoxS,
   MonthInput,
   YearInput,
   Option,
   CvvInput,
   SubmitBtn,
+  CardContainer,
+  Front,
+  Image,
+  Img,
+  CardNumberBox,
+  Box,
+  CardHolderName,
+  Expiration,
+  ExpMonth,
+  ExpYear,
+  Back,
+  Stripe,
+  CvvBox,
+  BoxS,
+  FlexBoxS,
 } from "./App.elements";
 
 const App = () => {
   return (
     <Container>
+      <CardContainer>
+        <Front>
+          <Image>
+            <Img src={Chip} alt="" />
+            <Img src={Visa} alt="" />
+          </Image>
+          <CardNumberBox id="card-number-box">################</CardNumberBox>
+          <FlexBoxS>
+            <Box>
+              <span>card holder</span>
+              <CardHolderName>Full name</CardHolderName>
+            </Box>
+            <Box>
+              <span>expires</span>
+              <Expiration>
+                <ExpMonth>mm</ExpMonth>
+                <ExpYear>yy</ExpYear>
+              </Expiration>
+            </Box>
+          </FlexBoxS>
+        </Front>
+        <Back>
+          <Stripe></Stripe>
+          <BoxS>
+            <span>cvv</span>
+            <CvvBox></CvvBox>
+            <img src={Visa} alt="" />
+          </BoxS>
+        </Back>
+      </CardContainer>
       <Form>
         <InputBox>
           <Span>card number</Span>
-          <CardNumberInput type="text" maxlength="16" />
+          <CardNumberInput type="text" maxlength="16" id="card-number-input" />
         </InputBox>
         <InputBox>
           <Span>card holder</Span>
           <CardHolderInput type="text" />
         </InputBox>
         <FlexBox>
-          <InputBox>
+          <InputBoxS>
             <Span>expiration mm</Span>
             <MonthInput name="" id="">
               <Option value="month" selected disabled>
@@ -46,7 +94,7 @@ const App = () => {
               <Option value="11">11</Option>
               <Option value="12">12</Option>
             </MonthInput>
-          </InputBox>
+          </InputBoxS>
           <InputBox>
             <Span>expiration yy</Span>
             <YearInput name="" id="">
