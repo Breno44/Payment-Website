@@ -18,7 +18,7 @@ Clone o projeto e acesse a pasta do mesmo.
 
 ```bash
 $ git clone https://github.com/Breno44/Payment-Website.git
-$ cd Light-Website
+$ cd Payment-Website
 ```
 
 Para iniciá-lo, siga os passos abaixo:
