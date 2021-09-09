@@ -1,6 +1,7 @@
 import React from "react";
 import Chip from "./assets/images/chip.png";
 import Visa from "./assets/images/visa.png";
+import { useState } from "react";
 import {
   Container,
   Form,
@@ -33,6 +34,37 @@ import {
 } from "./App.elements";
 
 const App = () => {
+  const [input, setInput] = useState("################");
+  const [name, setName] = useState("Full name");
+  const [month, setMonth] = useState("mm");
+  const [year, setYear] = useState("yy");
+
+  const handleNumber = (value) => {
+    setInput(value);
+  };
+
+  const handleName = (value) => {
+    setName(value);
+  };
+
+  const handleMonth = (value) => {
+    setMonth(value);
+  };
+
+  const handleYear = (value) => {
+    setYear(value);
+  };
+
+  const handleMouseEnter = () => {
+    document.querySelector(".jwjrZy").style.transform = "perpective(1000px) rotateY(-180deg) !important";
+    document.querySelector(".bLzAZS").style.transform = "perpective(1000px) rotateY(0deg) !important";
+  };
+
+  const handleMouseLeave = () => {
+    document.querySelector(".jwjrZy").style.transform = "perpective(1000px) rotateY(0deg) !important";
+    document.querySelector(".bLzAZS").style.transform = "perpective(1000px) rotateY(180deg) !important";
+  };
+
   return (
     <Container>
       <CardContainer>
@@ -41,17 +73,17 @@ const App = () => {
             <Img src={Chip} alt="" />
             <Img src={Visa} alt="" />
           </Image>
-          <CardNumberBox id="card-number-box">################</CardNumberBox>
+          <CardNumberBox id="card-number-box">{input}</CardNumberBox>
           <FlexBoxS>
             <Box>
               <span>card holder</span>
-              <CardHolderName>Full name</CardHolderName>
+              <CardHolderName>{name}</CardHolderName>
             </Box>
             <Box>
               <span>expires</span>
               <Expiration>
-                <ExpMonth>mm</ExpMonth>
-                <ExpYear>yy</ExpYear>
+                <ExpMonth>{month} /</ExpMonth>
+                <ExpYear> {year}</ExpYear>
               </Expiration>
             </Box>
           </FlexBoxS>
@@ -68,16 +100,21 @@ const App = () => {
       <Form>
         <InputBox>
           <Span>card number</Span>
-          <CardNumberInput type="text" maxlength="16" id="card-number-input" />
+          <CardNumberInput
+            type="text"
+            maxlength="16"
+            id="card-number-input"
+            onChange={(e) => handleNumber(e.target.value)}
+          />
         </InputBox>
         <InputBox>
           <Span>card holder</Span>
-          <CardHolderInput type="text" />
+          <CardHolderInput type="text" onChange={(e) => handleName(e.target.value)} />
         </InputBox>
         <FlexBox>
           <InputBoxS>
             <Span>expiration mm</Span>
-            <MonthInput name="" id="">
+            <MonthInput name="" id="" onChange={(e) => handleMonth(e.target.value)}>
               <Option value="month" selected disabled>
                 month
               </Option>
@@ -97,7 +134,7 @@ const App = () => {
           </InputBoxS>
           <InputBox>
             <Span>expiration yy</Span>
-            <YearInput name="" id="">
+            <YearInput name="" id="" onChange={(e) => handleYear(e.target.value)}>
               <Option value="year" selected disabled>
                 year
               </Option>
@@ -114,7 +151,7 @@ const App = () => {
           </InputBox>
           <InputBox>
             <Span>cvv</Span>
-            <CvvInput type="text" maxlength="4" />
+            <CvvInput type="text" maxlength="4" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
           </InputBox>
         </FlexBox>
         <SubmitBtn type="submit" value="Submit">
